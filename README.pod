@@ -1,0 +1,57 @@
+=pod
+
+=head1 NAME
+
+Test::NoSmartComments - Make sure no Smart::Comments escape into the wild
+
+=head1 VERSION
+
+version 0.001
+
+=head1 SYNOPSIS
+
+    use Test::More;
+    eval "use Test::HasVersion";
+    plan skip_all =>
+        'Test::NoSmartComments required for testing for version numbers'
+        if $@
+        ;
+
+    no_smart_comments_in;
+    done_testing;
+
+=head1 DESCRIPTION
+
+L<Smart::Comment>s are great.  However, letting smart comments escape into the
+wilds of the CPAN is just dumb.
+
+This package provides a simple way to test for smart comments _before_ they
+get away!
+
+=head1 FUNCTIONS
+
+=head2 no_smart_comments_in($file)
+
+Called with a file name, this function scans it for any smart comments.
+
+=head2 no_smart_comments_in_all()
+
+no_smart_comments_in_all() scans the MANIFEST for all matching qr!^lib/.*.pm$!
+and issues a pass or fail for each.
+
+=head1 SEE ALSO
+
+L<Smart::Comments>, L<Dist::Zilla::Plugin::NoSmartCommentsTests>
+
+=head1 AUTHOR
+
+Chris Weyl <cweyl@alumni.drew.edu>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is Copyright (c) 2011 by Chris Weyl.
+
+This is free software, licensed under:
+
+  The GNU Lesser General Public License, Version 2.1, February 1999
+
