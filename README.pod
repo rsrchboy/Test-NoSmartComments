@@ -30,7 +30,8 @@ get away!
 
 =head2 no_smart_comments_in($file)
 
-Called with a file name, this function scans it for any smart comments.
+Called with a file name, this function scans it for the use of
+L<the Smart::Comments module|Smart::Comments>.
 
 =head2 no_smart_comments_in_all()
 
