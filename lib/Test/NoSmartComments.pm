@@ -44,11 +44,9 @@ __END__
 =head1 SYNOPSIS
 
     use Test::More;
-    eval "use Test::HasVersion";
-    plan skip_all =>
-        'Test::NoSmartComments required for testing for version numbers'
-        if $@
-        ;
+    eval "use Test::NoSmartComments";
+    plan skip_all => 'Test::NoSmartComments required for checking comment IQ'
+        if $@ ;
 
     no_smart_comments_in;
     done_testing;
