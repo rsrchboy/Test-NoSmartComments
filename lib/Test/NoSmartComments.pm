@@ -12,14 +12,23 @@ my $CLASS = __PACKAGE__;
 use Module::ScanDeps;
 use ExtUtils::Manifest qw( maniread );
 
-our @EXPORT = qw{ no_smart_comments_in no_smart_comments_in_all };
+our @EXPORT = qw{
+    no_smart_comments_in
+    no_smart_comments_in_all
+    no_smart_comments_in_tests
+};
 
 
-sub no_smart_comments_in_all {
+sub no_smart_comments_in_all   { _no_smart_comments_in_matching(qr!^lib/.*\.pm$!) }
+sub no_smart_comments_in_tests { _no_smart_comments_in_matching(qr!^t/.*\.t$!)  }
+
+sub _no_smart_comments_in_matching {
+    my $like = shift @_;
+
     my $tb = $CLASS->builder;
     my $manifest = maniread();
-    my @files = sort grep { m!^lib/.*\.pm$! } keys %$manifest;
-    local $Test::Builder::Level = $Test::Builder::Level + 1;
+    my @files = sort grep { $like } keys %$manifest;
+    local $Test::Builder::Level = $Test::Builder::Level + 2;
     no_smart_comments_in($_) for @files;
 
     return;
@@ -65,10 +74,15 @@ get away!
 Called with a file name, this function scans it for the use of
 L<the Smart::Comments module|Smart::Comments>.
 
-=head2 no_smart_comments_in_all()
+=head2 no_smart_comments_in_all
 
 no_smart_comments_in_all() scans the MANIFEST for all matching qr!^lib/.*.pm$!
 and issues a pass or fail for each.
+
+=head2 no_smart_comments_in_tests
+
+Like no_smart_comments_in_all(), we scan the MANIFEST for all files matching
+qr!^lib/.*.t$!  and issues a pass or fail for each.
 
 =head1 SEE ALSO
 
