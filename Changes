@@ -2,6 +2,9 @@ Revision history for Test-NoSmartComments
 
 {{$NEXT}}
 
+0.005     2014-12-02 19:46:57 PST-0800
+    * Add a no_smart_comments_in_tests() file, to check all *.t files
+
 0.004     2011-03-18 17:59:37 America/Los_Angeles
     * Add doc tweaks from dougwilson (thanks!)
 
