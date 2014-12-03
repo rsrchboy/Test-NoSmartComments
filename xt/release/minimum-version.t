@@ -1,3 +1,4 @@
+#!perl
 #
 # This file is part of Test-NoSmartComments
 #
@@ -7,11 +8,10 @@
 #
 #   The GNU Lesser General Public License, Version 2.1, February 1999
 #
-package Dumb;
 
-use strict;
-use warnings;
+use Test::More;
 
-#use Smart::Comments;
-
-1;
+eval "use Test::MinimumVersion";
+plan skip_all => "Test::MinimumVersion required for testing minimum versions"
+  if $@;
+all_minimum_version_ok( qq{5.008008} );
