@@ -28,7 +28,6 @@ sub no_smart_comments_in_all {
 sub no_smart_comments_in {
     my $file = shift @_;
     my $tb = $CLASS->builder;
-    #my $tb = __PACKAGE__->builder;
 
     $tb->diag("No such file: $file") unless -f $file;
 
