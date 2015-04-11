@@ -61,7 +61,7 @@ __END__
 
 =head1 DESCRIPTION
 
-L<Smart::Comment>s are great.  However, letting smart comments escape into the
+L<Smart::Comments> are great.  However, letting smart comments escape into the
 wilds of the CPAN is just dumb.
 
 This package provides a simple way to test for smart comments _before_ they
